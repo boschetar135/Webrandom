@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recetas Rápidas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Recetas Rápidas</h1>
+    <p>Fácil, rápido y delicioso 🍳</p>
+  </header>
+
+  <main>
+    <section class="receta">
+      <h2 onclick="toggleReceta('receta1')">🥪 Sándwich de atún</h2>
+      <div id="receta1" class="contenido-receta">
+        <ul>
+          <li>Pan de molde</li>
+          <li>Atún en lata</li>
+          <li>Mayonesa</li>
+          <li>Lechuga y tomate</li>
+        </ul>
+        <p>Mezcla el atún con mayonesa, agrégalo al pan con los vegetales. ¡Listo!</p>
+      </div>
+    </section>
+
+    <section class="receta">
+      <h2 onclick="toggleReceta('receta2')">🥚 Huevos revueltos</h2>
+      <div id="receta2" class="contenido-receta">
+        <ul>
+          <li>Huevos</li>
+          <li>Sal y pimienta</li>
+          <li>Mantequilla</li>
+        </ul>
+        <p>Bate los huevos, cocínalos en mantequilla, y sazona al gusto.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Hecho con ❤️ por ChatGPT</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
