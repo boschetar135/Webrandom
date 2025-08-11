@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Planet Tende — Toldos y soluciones exteriores</title>
+  <meta name="description" content="Planet Tende — Toldos retráctiles, pérgolas, toldos verticales, instalación y mantenimiento. Solicita presupuesto." />
+  <!-- Fuentes e iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <!-- =========================
+       CSS (Interno - puedes extraer a styles.css)
+       ========================= -->
+  <style>
+    /* =========================
+       Variables de diseño (amarillos y azules)
+       ========================= */
+    :root{
+      --bg: #f6fbff;
+      --blue-deep: #052843;
+      --blue-mid: #1f6fb7;
+      --blue-soft: #eaf7ff;
+      --yellow-1: #ffd24d;
+      --yellow-2: #ffb800;
+      --muted: #586574;
+      --accent-shadow: 0 10px 30px rgba(31,111,183,0.12);
+      --card: #ffffff;
+      --radius: 12px;
+      --maxw: 1200px;
+      --focus: 0 0 0 4px rgba(31,111,183,0.12);
+    }
+
+    /* ===== Reset + base ===== */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, #fbfeff 0%, var(--bg) 100%);
+      color: #0d2233;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+    img{display:block;max-width:100%;height:auto}
+    a{color:inherit;text-decoration:none}
+    .container{width:92%;max-width:var(--maxw);margin:0 auto}
+
+    /* ===== NAVBAR fijo ===== */
+    header.navbar{
+      position:fixed;top:0;left:0;right:0;z-index:1200;
+      background: rgba(255,255,255,0.86);backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(2,48,71,0.04);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:52px;height:52px;border-radius:12px;
+      background:linear-gradient(135deg,var(--yellow-1),var(--blue-mid));
+      display:flex;align-items:center;justify-content:center;color:#052033;font-weight:900;
+      box-shadow: var(--accent-shadow);
+      font-size:1.05rem;
+    }
+    .brand .title{font-weight:800;color:var(--blue-deep);line-height:1}
+    .brand .subtitle{font-size:0.8rem;color:var(--muted)}
+
+    nav.primary{display:flex;gap:10px;align-items:center}
+    nav.primary a{padding:8px 12px;border-radius:8px;font-weight:700;color:var(--blue-deep);font-size:0.95rem}
+    nav.primary a:hover{background:rgba(31,111,183,0.06)}
+    .cta{
+      background:linear-gradient(90deg,var(--yellow-2),var(--yellow-1));color:#042033;padding:8px 14px;border-radius:10px;font-weight:800;
+      box-shadow:0 10px 26px rgba(255,180,0,0.12)
+    }
+    .mobile-toggle{display:none;background:transparent;border:0;font-size:1.2rem}
+
+    @media (max-width:920px){
+      nav.primary{display:none;position:absolute;top:66px;right:16px;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--accent-shadow);flex-direction:column;min-width:220px}
+      nav.primary.show{display:flex}
+      .mobile-toggle{display:block}
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      margin-top:76px;min-height:66vh;display:grid;align-items:center;border-bottom-left-radius:28px;border-bottom-right-radius:28px;overflow:hidden;position:relative;
+    }
+    .hero .bg{
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(135deg, rgba(5,40,67,0.28), rgba(255,210,77,0.12)),
+        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;background-position:center;
+      filter:contrast(0.98) saturate(1.05);
+    }
+    .hero .overlay{position:relative;padding:56px 0;color:#042033}
+    .hero h1{font-size:2.2rem;margin:0 0 12px;letter-spacing:-0.01em}
+    .hero p.lead{margin:0 0 18px;color:var(--muted);max-width:68ch}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;cursor:pointer;border-radius:10px;padding:10px 14px;font-weight:800;border:0;
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--yellow-2),var(--yellow-1));color:var(--blue-deep);box-shadow:0 8px 20px rgba(255,180,0,0.12)}
+    .btn-outline{background:transparent;border:2px solid rgba(2,48,71,0.06);color:var(--blue-deep)}
+    .btn:active{transform:translateY(1px)}
+    .btn:focus{outline:none;box-shadow:var(--focus)}
+
+    /* ===== SECCIONES ===== */
+    section{padding:64px 0}
+    h2.section-title{font-size:1.35rem;color:var(--blue-deep);margin:0 0 8px}
+    .muted{color:var(--muted);font-size:0.95rem}
+
+    /* ===== PRODUCTOS ===== */
+    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .product-card{background:var(--card);padding:14px;border-radius:14px;box-shadow:var(--accent-shadow);display:flex;flex-direction:column;gap:12px;min-height:260px}
+    .product-media{height:160px;border-radius:10px;overflow:hidden;background:var(--blue-soft);display:flex;align-items:center;justify-content:center}
+    .product-media img{width:100%;height:100%;object-fit:cover}
+    .kicker{font-weight:800;color:var(--blue-mid);font-size:0.85rem}
+    .price-tag{margin-left:auto;background:linear-gradient(90deg,var(--yellow-2),var(--yellow-1));padding:6px 10px;border-radius:8px;font-weight:900;color:#042033}
+
+    @media (max-width:920px){.products-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.products-grid{grid-template-columns:1fr}; .hero h1{font-size:1.5rem}}
+
+    /* ===== GALERÍA ===== */
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .gallery-grid button{padding:0;border:0;background:transparent;border-radius:10px;overflow:hidden}
+    .gallery-grid img{display:block;width:100%;height:160px;object-fit:cover;transition:transform .25s ease}
+    .gallery-grid button:focus img, .gallery-grid button:hover img{transform:scale(1.04)}
+    @media (max-width:1100px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:760px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:420px){.gallery-grid{grid-template-columns:1fr}}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(2,16,28,0.72);display:flex;align-items:center;justify-content:center;z-index:1400;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s ease}
+    .lightbox.show{opacity:1;pointer-events:auto}
+    .lightbox img{max-width:95%;max-height:86%;border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,0.4)}
+
+    /* ===== SERVICIOS ===== */
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .service{background:var(--card);padding:16px;border-radius:12px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--accent-shadow)}
+    .service i{font-size:1.6rem;color:var(--yellow-2);min-width:44px;text-align:center}
+    @media (max-width:960px){.services-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:560px){.services-grid{grid-template-columns:1fr}}
+
+    /* ===== TESTIMONIOS (carrusel) ===== */
+    .testimonials{position:relative;padding:22px;border-radius:12px;background:linear-gradient(90deg,var(--blue-mid),var(--blue-deep));color:#fff}
+    .slide{display:none}
+    .slide.active{display:block}
+    .testimonial{display:flex;gap:14px;align-items:flex-start}
+    .testimonial img{width:64px;height:64px;border-radius:999px;object-fit:cover;box-shadow:0 8px 20px rgba(0,0,0,0.12)}
+    .stars{color:#ffd966;margin-bottom:6px}
+
+    /* ===== FORMULARIOS ===== */
+    .card{background:linear-gradient(180deg,#fff,var(--card));padding:16px;border-radius:12px;box-shadow:var(--accent-shadow)}
+    .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .form-grid .full{grid-column:1/-1}
+    label{display:block;font-weight:700;font-size:0.92rem;margin-bottom:6px}
+    input, select, textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #e9eef5;background:#fff;font-size:0.95rem}
+    input:focus, textarea:focus, select:focus{outline:none;box-shadow:var(--focus);border-color:var(--blue-mid)}
+    .btn-ghost{background:transparent;border:2px solid rgba(255,255,255,0.14);color:#fff}
+
+    /* ===== MAPA ===== */
+    .map-container{border-radius:12px;overflow:hidden;height:300px;box-shadow:var(--accent-shadow)}
+
+    /* ===== FOOTER ===== */
+    footer{padding:28px 0;border-top:1px solid rgba(0,0,0,0.04);margin-top:12px;background:linear-gradient(180deg,#fff,var(--blue-soft))}
+    .footer-grid{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted)}
+
+    /* ===== UTILITIES ===== */
+    .flex{display:flex;align-items:center;gap:12px}
+    .stack{display:flex;flex-direction:column;gap:8px}
+    .reveal{opacity:0;transform:translateY(12px);transition:all 700ms cubic-bezier(.2,.9,.25,1)}
+    .reveal.visible{opacity:1;transform:none}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .error{border-color:#d24a3a;background:#fff6f6}
+    .form-error{color:#d24a3a;font-size:0.9rem;margin-top:6px}
+  </style>
+</head>
+<body>
+  <!-- ========== NAV ========== -->
+  <header class="navbar" role="navigation" aria-label="Barra de navegación principal">
+    <div class="container nav-inner">
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">PT</div>
+        <div>
+          <div class="title">Planet Tende</div>
+          <div class="subtitle">Toldos · Pérgolas · Soluciones exteriores</div>
+        </div>
+      </div>
+
+      <button class="mobile-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Abrir menú">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <nav id="primary-nav" class="primary" role="menu" aria-label="Navegación principal">
+        <a href="#inicio" role="menuitem">Inicio</a>
+        <a href="#productos" role="menuitem">Productos</a>
+        <a href="#galeria" role="menuitem">Galería</a>
+        <a href="#servicios" role="menuitem">Servicios</a>
+        <a href="#opiniones" role="menuitem">Opiniones</a>
+        <a href="#contacto" role="menuitem">Contacto</a>
+        <a href="#contacto" class="cta" role="menuitem">Solicitar presupuesto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== MAIN ========== -->
+  <main>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero" aria-labelledby="hero-title">
+      <div class="bg" role="img" aria-label="Toldo instalado en terraza moderna"></div>
+      <div class="overlay container">
+        <div class="reveal" style="max-width:900px;">
+          <h1 id="hero-title">Protege y transforma tu exterior con <span style="color:var(--yellow-2)">Planet Tende</span></h1>
+          <p class="lead">Instalación profesional de toldos, pérgolas bioclimáticas y soluciones a medida. Garantía, diseño y servicio posventa.</p>
+          <div class="actions">
+            <a href="#productos" class="btn btn-outline" aria-label="Ver productos">Ver productos</a>
+            <a href="#contacto" class="btn btn-primary" aria-label="Solicitar presupuesto">Solicitar presupuesto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section id="productos" class="container" aria-labelledby="productos-title">
+      <div class="reveal">
+        <h2 id="productos-title" class="section-title">Nuestros productos</h2>
+        <p class="muted">Soluciones para hogar, hostelería y espacios comerciales. Te ayudamos a elegir tejido, color y automatización.</p>
+      </div>
+
+      <div class="products-grid" style="margin-top:18px;">
+        <!-- Producto 1 -->
+        <article class="product-card reveal" aria-labelledby="p1">
+          <div class="product-media"><img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?q=80&w=1200&auto=format&fit=crop" alt="Toldo retráctil"></div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <h3 id="p1" style="margin:0">Toldo retráctil</h3>
+            <div class="price-tag">A medida</div>
+          </div>
+          <p class="muted">Automatizable, sensores solares y tejidos acrílicos para exterior.</p>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
+            <a href="#contacto" class="btn btn-primary" aria-label="Pedir presupuesto toldo retráctil">Pedir presupuesto</a>
+            <a class="muted" style="font-size:0.9rem;margin-left:auto">Desde consultar</a>
+          </div>
+        </article>
+
+        <!-- Producto 2 -->
+        <article class="product-card reveal" aria-labelledby="p2">
+          <div class="product-media"><img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1200&auto=format&fit=crop" alt="Pérgola bioclimática"></div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <h3 id="p2" style="margin:0">Pérgola bioclimática</h3>
+            <div class="price-tag">Premium</div>
+          </div>
+          <p class="muted">Control de lamas, cerramientos laterales y detalles LED.</p>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
+            <a href="#contacto" class="btn btn-primary" aria-label="Pedir presupuesto pérgola">Pedir presupuesto</a>
+            <a class="muted" style="font-size:0.9rem;margin-left:auto">Instalación</a>
+          </div>
+        </article>
+
+        <!-- Producto 3 -->
+        <article class="product-card reveal" aria-labelledby="p3">
+          <div class="product-media"><img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop" alt="Toldo vertical"></div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <h3 id="p3" style="margin:0">Toldo vertical</h3>
+            <div class="price-tag">Protección</div>
+          </div>
+          <p class="muted">Privacidad y control solar para terrazas y porches.</p>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
+            <a href="#contacto" class="btn btn-primary" aria-label="Pedir presupuesto toldo vertical">Pedir presupuesto</a>
+            <a class="muted" style="font-size:0.9rem;margin-left:auto">Consultar</a>
+          </div>
+        </article>
+
+        <!-- Producto 4 -->
+        <article class="product-card reveal" aria-labelledby="p4">
+          <div class="product-media"><img src="https://images.unsplash.com/photo-1505691723518-36a5eae3b2a9?q=80&w=1200&auto=format&fit=crop" alt="Sombrilla profesional"></div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <h3 id="p4" style="margin:0">Sombrillas profesionales</h3>
+            <div class="price-tag">Hostelería</div>
+          </div>
+          <p class="muted">Bases, estructuras y toldos resistentes para restaurantes y hoteles.</p>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
+            <a href="#contacto" class="btn btn-primary" aria-label="Pedir presupuesto sombrilla">Pedir presupuesto</a>
+            <a class="muted" style="font-size:0.9rem;margin-left:auto">Ideal para negocios</a>
+          </div>
+        </article>
+
+        <!-- Producto 5 -->
+        <article class="product-card reveal" aria-labelledby="p5">
+          <div class="product-media"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" alt="Cerramiento lateral"></div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <h3 id="p5" style="margin:0">Cerramientos laterales</h3>
+            <div class="price-tag">Versátil</div>
+          </div>
+          <p class="muted">Crystal, cortinas o telas microperforadas según uso.</p>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
+            <a href="#contacto" class="btn btn-primary" aria-label="Pedir presupuesto cerramiento">Pedir presupuesto</a>
+            <a class="muted" style="font-size:0.9rem;margin-left:auto">Personalizable</a>
+          </div>
+        </article>
+
+        <!-- Producto 6 -->
+        <article class="product-card reveal" aria-labelledby="p6">
+          <div class="product-media"><img src="https://images.unsplash.com/photo-1598300053280-3f2d4c88a0c7?q=80&w=1200&auto=format&fit=crop" alt="Automatización toldos"></div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <h3 id="p6" style="margin:0">Automatización & Smart</h3>
+            <div class="price-tag">Smart</div>
+          </div>
+          <p class="muted">Motores, sensores de viento/sol y control desde app o mando.</p>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
+            <a href="#contacto" class="btn btn-primary" aria-label="Pedir presupuesto automatización">Pedir presupuesto</a>
+            <a class="muted" style="font-size:0.9rem;margin-left:auto">Integrable</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="container" aria-labelledby="galeria-title">
+      <div class="reveal">
+        <h2 id="galeria-title" class="section-title">Galería de proyectos</h2>
+        <p class="muted">Haz click en cualquier imagen para verla ampliada.</p>
+      </div>
+
+      <div class="gallery-grid" style="margin-top:14px;">
+        <!-- Botones con data-src para lightbox -->
+        <button class="reveal" data-src="https://images.unsplash.com/photo-1505691723518-36a5eae3b2a9?q=80&w=1400&auto=format&fit=crop" aria-label="Abrir imagen de proyecto 1">
+          <img src="https://images.unsplash.com/photo-1505691723518-36a5eae3b2a9?q=80&w=800&auto=format&fit=crop" alt="Proyecto toldo 1">
+        </button>
+        <button class="reveal" data-src="https://images.unsplash.com/photo-1546554137-f86b9593a222?q=80&w=1400&auto=format&fit=crop" aria-label="Abrir imagen de proyecto 2">
+          <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?q=80&w=800&auto=format&fit=crop" alt="Proyecto toldo 2">
+        </button>
+        <button class="reveal" data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1400&auto=format&fit=crop" aria-label="Abrir imagen de proyecto 3">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Proyecto toldo 3">
+        </button>
+        <button class="reveal" data-src="https://images.unsplash.com/photo-1598300053280-3f2d4c88a0c7?q=80&w=1400&auto=format&fit=crop" aria-label="Abrir imagen de proyecto 4">
+          <img src="https://images.unsplash.com/photo-1598300053280-3f2d4c88a0c7?q=80&w=800&auto=format&fit=crop" alt="Proyecto toldo 4">
+        </button>
+        <button class="reveal" data-src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop" aria-label="Abrir imagen de proyecto 5">
+          <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=800&auto=format&fit=crop" alt="Proyecto toldo 5">
+        </button>
+        <button class="reveal" data-src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1400&auto=format&fit=crop" aria-label="Abrir imagen de proyecto 6">
+          <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=800&auto=format&fit=crop" alt="Proyecto toldo 6">
+        </button>
+        <button class="reveal" data-src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1400&auto=format&fit=crop" aria-label="Abrir imagen de proyecto 7">
+          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=800&auto=format&fit=crop" alt="Proyecto toldo 7">
+        </button>
+        <button class="reveal" data-src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1400&auto=format&fit=crop" aria-label="Abrir imagen de proyecto 8">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&auto=format&fit=crop" alt="Proyecto toldo 8">
+        </button>
+      </div>
+
+      <!-- Lightbox accesible -->
+      <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Visor de imágenes ampliadas">
+        <button id="lb-close" aria-label="Cerrar imagen" style="position:absolute;top:20px;right:24px;background:transparent;border:0;color:#fff;font-size:1.6rem"><i class="fas fa-times"></i></button>
+        <img id="lb-img" src="" alt="Imagen ampliada">
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="container" aria-labelledby="servicios-title">
+      <div class="reveal">
+        <h2 id="servicios-title" class="section-title">Servicios</h2>
+        <p class="muted">Desde el proyecto hasta el mantenimiento: todo cubierto.</p>
+      </div>
+
+      <div class="services-grid" style="margin-top:14px;">
+        <div class="service reveal" role="article" aria-labelledby="s1">
+          <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+          <div>
+            <h3 id="s1" style="margin:0">Medición y proyecto</h3>
+            <p class="muted">Visita técnica y propuesta en 3D si se requiere.</p>
+          </div>
+        </div>
+
+        <div class="service reveal" role="article" aria-labelledby="s2">
+          <i class="fas fa-tools" aria-hidden="true"></i>
+          <div>
+            <h3 id="s2" style="margin:0">Instalación certificada</h3>
+            <p class="muted">Técnicos especialistas con garantía incluida.</p>
+          </div>
+        </div>
+
+        <div class="service reveal" role="article" aria-labelledby="s3">
+          <i class="fas fa-sync-alt" aria-hidden="true"></i>
+          <div>
+            <h3 id="s3" style="margin:0">Mantenimiento</h3>
+            <p class="muted">Planes anuales y revisiones preventivas.</p>
+          </div>
+        </div>
+
+        <div class="service reveal" role="article" aria-labelledby="s4">
+          <i class="fas fa-bolt" aria-hidden="true"></i>
+          <div>
+            <h3 id="s4" style="margin:0">Reparación urgente</h3>
+            <p class="muted">Intervenciones rápidas y repuestos originales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPINIONES -->
+    <section id="opiniones" class="container" aria-labelledby="opiniones-title">
+      <div class="reveal">
+        <h2 id="opiniones-title" class="section-title">Opiniones de clientes</h2>
+        <p class="muted">Clientes satisfechos que confían en Planet Tende.</p>
+      </div>
+
+      <div class="testimonials reveal" style="margin-top:12px">
+        <div id="slides" aria-live="polite">
+          <div class="slide active" role="article">
+            <div class="testimonial">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Foto cliente 1">
+              <div>
+                <div class="stars" aria-hidden="true">★★★★★</div>
+                <strong>María López</strong>
+                <div class="muted">"Rápida instalación, trato profesional y resultado impecable. Recomendados."</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide" role="article">
+            <div class="testimonial">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop" alt="Foto cliente 2">
+              <div>
+                <div class="stars" aria-hidden="true">★★★★★</div>
+                <strong>Carlos Ruiz</strong>
+                <div class="muted">"Asesoría clara y montaje perfecto. Muy buen servicio posventa."</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide" role="article">
+            <div class="testimonial">
+              <img src="https://images.unsplash.com/photo-1545996124-0b0bd0c8e14c?q=80&w=400&auto=format&fit=crop" alt="Foto cliente 3">
+              <div>
+                <div class="stars" aria-hidden="true">★★★★☆</div>
+                <strong>Lucía Martín</strong>
+                <div class="muted">"Profesionales y atentos. El toldo funciona muy bien."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles -->
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center">
+          <button id="prev-slide" class="btn" aria-label="Anterior" title="Anterior" style="background:transparent;border:1px solid rgba(255,255,255,0.14);color:#fff;padding:8px;border-radius:8px"><i class="fas fa-chevron-left"></i></button>
+          <button id="next-slide" class="btn" aria-label="Siguiente" title="Siguiente" style="background:transparent;border:1px solid rgba(255,255,255,0.14);color:#fff;padding:8px;border-radius:8px"><i class="fas fa-chevron-right"></i></button>
+          <div class="note" style="color:rgba(255,255,255,0.9);margin-left:10px">Opiniones verificadas · Media: 4.7</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO / PRESUPUESTO -->
+    <section id="contacto" class="container" aria-labelledby="contacto-title">
+      <div class="reveal" style="display:grid;grid-template-columns:1fr 380px;gap:22px;align-items:start;">
+        <div>
+          <h2 id="contacto-title" class="section-title">Contacto y presupuesto</h2>
+          <p class="muted">Rellena el formulario y te enviaremos un presupuesto orientativo. (Envío simulado en esta demo)</p>
+
+          <!-- Formulario (validación JS) -->
+          <form id="contact-form" class="card" aria-label="Formulario de contacto" novalidate>
+            <div class="form-grid">
+              <div>
+                <label for="c-name">Nombre *</label>
+                <input id="c-name" name="name" type="text" required aria-required="true" placeholder="Ej. Ana García">
+                <div class="form-error" id="cerr-name" aria-live="polite"></div>
+              </div>
+              <div>
+                <label for="c-phone">Teléfono *</label>
+                <input id="c-phone" name="phone" type="tel" required aria-required="true" placeholder="+34 600 000 000" pattern="^\+?[0-9\s\-().]{7,20}$">
+                <div class="form-error" id="cerr-phone" aria-live="polite"></div>
+              </div>
+              <div>
+                <label for="c-email">Email *</label>
+                <input id="c-email" name="email" type="email" required aria-required="true" placeholder="tunombre@ejemplo.com">
+                <div class="form-error" id="cerr-email" aria-live="polite"></div>
+              </div>
+              <div>
+                <label for="c-type">Tipo de servicio</label>
+                <select id="c-type" name="type" aria-label="Tipo de toldo o servicio">
+                  <option value="">Selecciona</option>
+                  <option>Toldo retráctil</option>
+                  <option>Pérgola bioclimática</option>
+                  <option>Toldo vertical</option>
+                  <option>Mantenimiento / reparación</option>
+                </select>
+              </div>
+
+              <div class="full">
+                <label for="c-message">Detalles / Mensaje *</label>
+                <textarea id="c-message" name="message" rows="5" required aria-required="true" placeholder="Describe brevemente el proyecto, medidas aproximadas, ubicación..."></textarea>
+                <div class="form-error" id="cerr-message" aria-live="polite"></div>
+              </div>
+
+              <div class="full" style="display:flex;gap:12px;align-items:center">
+                <button type="submit" class="btn btn-primary" aria-label="Enviar solicitud">Enviar solicitud</button>
+                <div class="note">O llámanos al <strong>+34 600 123 456</strong></div>
+              </div>
+            </div>
+          </form>
+
+          <div id="contact-result" role="status" aria-live="polite" style="margin-top:12px"></div>
+        </div>
+
+        <aside>
+          <div class="card" style="display:flex;flex-direction:column;gap:12px">
+            <div>
+              <strong>Horario</strong>
+              <div class="muted">Lun - Vie: 09:00 — 18:00 · Sáb: 10:00 — 14:00</div>
+            </div>
+            <div>
+              <strong>Dirección</strong>
+              <div class="muted">C/ Ejemplo 45, 28001 Madrid</div>
+            </div>
+
+            <div>
+              <h3 class="muted" style="margin-top:6px">Ubicación</h3>
+              <div class="map-container" role="application" aria-label="Mapa de Planet Tende">
+                <!-- Embed simple: cambiar la query por la dirección real -->
+                <iframe loading="lazy"
+                  src="https://www.google.com/maps?q=Calle+Mayor+Madrid&output=embed"
+                  style="border:0;width:100%;height:100%" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Planet Tende"></iframe>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo" aria-label="Pie de página">
+    <div class="container footer-grid">
+      <div style="display:flex;flex-direction:column">
+        <div style="font-weight:800;color:var(--blue-deep)">Planet Tende</div>
+        <div class="muted" style="margin-top:6px">© <span id="year"></span> · Aviso legal · Política de privacidad</div>
+      </div>
+
+      <div class="flex">
+        <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook fa-lg" style="color:var(--blue-deep)"></i></a>
+        <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram fa-lg" style="color:var(--yellow-2)"></i></a>
+        <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin fa-lg" style="color:var(--blue-mid)"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================
+       JavaScript (Comportamiento)
+       ========================= -->
+  <script>
+    // ---------- Valores dinámicos ----------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---------- Mobile nav toggle ----------
+    const toggle = document.querySelector('.mobile-toggle');
+    const primaryNav = document.getElementById('primary-nav');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      primaryNav.classList.toggle('show');
+    });
+    // Close mobile nav on link click
+    document.querySelectorAll('#primary-nav a').forEach(a => a.addEventListener('click', () => {
+      if (primaryNav.classList.contains('show')) {
+        primaryNav.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    }));
+
+    // ---------- Scroll reveal (IntersectionObserver) ----------
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.12});
+    revealEls.forEach(el => io.observe(el));
+
+    // ---------- Lightbox gallery ----------
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbClose = document.getElementById('lb-close');
+
+    document.querySelectorAll('.gallery-grid button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const src = btn.getAttribute('data-src');
+        lbImg.src = src;
+        lbImg.alt = btn.querySelector('img').alt || 'Imagen ampliada';
+        lightbox.classList.add('show');
+        lightbox.setAttribute('aria-hidden','false');
+        lbClose.focus();
+      });
+    });
+
+    function closeLb(){
+      lightbox.classList.remove('show');
+      lightbox.setAttribute('aria-hidden','true');
+      lbImg.src = '';
+    }
+    lbClose.addEventListener('click', closeLb);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLb(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+
+    // ---------- Testimonials carousel (simple + accessible) ----------
+    const slides = Array.from(document.querySelectorAll('#slides .slide'));
+    let current = 0;
+    const showSlide = (idx) => {
+      slides.forEach((s,i) => s.classList.toggle('active', i === idx));
+    };
+    document.getElementById('prev-slide').addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+    document.getElementById('next-slide').addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+    // Auto-play (pausa on hover)
+    let autoplay = setInterval(()=>{ current = (current+1)%slides.length; showSlide(current); }, 6000);
+    document.querySelector('.testimonials').addEventListener('mouseover', ()=> clearInterval(autoplay));
+    document.querySelector('.testimonials').addEventListener('mouseout', ()=> { autoplay = setInterval(()=>{ current = (current+1)%slides.length; showSlide(current); }, 6000); });
+
+    // ---------- Form validation (contact/presupuesto) ----------
+    function validateField(field, errId, validatorFn, msg){
+      const errEl = document.getElementById(errId);
+      if (!validatorFn(field.value)) {
+        field.classList.add('error');
+        errEl.textContent = msg;
+        return false;
+      } else {
+        field.classList.remove('error');
+        errEl.textContent = '';
+        return true;
+      }
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('c-name');
+      const phone = document.getElementById('c-phone');
+      const email = document.getElementById('c-email');
+      const message = document.getElementById('c-message');
+
+      const okName = validateField(name, 'cerr-name', v => v.trim().length >= 2, 'Introduce tu nombre.');
+      const okPhone = validateField(phone, 'cerr-phone', v => /^\+?[0-9\s\-().]{7,20}$/.test(v.trim()), 'Teléfono inválido.');
+      const okEmail = validateField(email, 'cerr-email', v => /\S+@\S+\.\S+/.test(v), 'Email inválido.');
+      const okMessage = validateField(message, 'cerr-message', v => v.trim().length >= 6, 'Escribe más información.');
+
+      if (okName && okPhone && okEmail && okMessage) {
+        // Simulación de envío (aquí integrarías fetch() a tu backend)
+        const result = document.getElementById('contact-result');
+        result.innerHTML = `<div style="padding:12px;border-radius:10px;background:linear-gradient(90deg,var(--yellow-2),var(--yellow-1));color:#042033;font-weight:800;">Solicitud enviada: ${name.value}. Te responderemos pronto con un presupuesto orientativo.</div>`;
+        contactForm.reset();
+      } else {
+        const result = document.getElementById('contact-result');
+        result.innerHTML = `<div class="form-error">Corrige los campos en rojo y vuelve a enviar.</div>`;
+      }
+    });
+
+    // ---------- Small UX: close mobile menu on outside click ----------
+    document.addEventListener('click', (e) => {
+      if (!primaryNav.contains(e.target) && !toggle.contains(e.target) && primaryNav.classList.contains('show')) {
+        primaryNav.classList.remove('show'); toggle.setAttribute('aria-expanded','false');
+      }
+    });
+
+    // Accessibility helper: allow Enter/Space on gallery buttons
+    document.querySelectorAll('.gallery-grid button').forEach(btn => {
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
